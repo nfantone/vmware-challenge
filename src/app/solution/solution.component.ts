@@ -2,9 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {ContainerService} from '../containers/container.service';
 import {Container} from '../containers/container';
 import {MemoryFormatPipe} from '../util/memoryFormat.pipe';
+import {SortByIdPipe} from './sort-by-id.pipe';
+import {MemoryAllocationPipe} from './memory-allocation.pipe';
 import {Observable} from 'rxJS/Observable';
-
-const DEFAULT_CONTAINER_ID = 1;
 
 @Component({
   selector: 'my-solution',
@@ -13,27 +13,43 @@ const DEFAULT_CONTAINER_ID = 1;
   providers: [
     ContainerService
   ],
-  pipes: [MemoryFormatPipe]
+  pipes: [MemoryFormatPipe, SortByIdPipe, MemoryAllocationPipe]
 })
 export class SolutionComponent implements OnInit {
-  container: Container;
+  private static CRITITAL_MEMORY_THRESHOLD : number = 80;
+
+  memoryThreshold: number = 0;
+  order: boolean;
+  containers: Observable<Container[]>;
+
   constructor(private containerService: ContainerService) { }
 
   ngOnInit() {
-    this.containerService.getContainer(DEFAULT_CONTAINER_ID)
-      .subscribe((c: Container) => this.container = c);
+    this.containers = this.containerService.getContainers();
   }
-  toggleContainerState(evt : Event) {
+
+  toggleCriticalFilter(evt: Event) {
     evt.preventDefault();
     evt.stopPropagation();
-    return this.container.state === 'STARTED' ? this.stopContainer() : this.startContainer();
+    let elem: HTMLInputElement = <HTMLInputElement>evt.srcElement;
+    if (elem.checked) {
+      this.memoryThreshold = SolutionComponent.CRITITAL_MEMORY_THRESHOLD;
+    } else {
+      this.memoryThreshold = 0;
+    }
   }
 
-  stopContainer() : Observable<Container> {
-    return this.containerService.stopContainer(this.container);
+  toggleContainerState(evt : Event, c: Container) : Observable<Container> {
+    evt.preventDefault();
+    evt.stopPropagation();
+    return c.state === 'STARTED' ? this.stopContainer(c) : this.startContainer(c);
   }
 
-  startContainer() : Observable<Container> {
-    return this.containerService.startContainer(this.container);
+  stopContainer(c: Container) : Observable<Container> {
+    return this.containerService.stopContainer(c);
+  }
+
+  startContainer(c: Container) : Observable<Container> {
+    return this.containerService.startContainer(c);
   }
 }

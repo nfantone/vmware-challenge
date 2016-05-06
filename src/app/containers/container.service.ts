@@ -1,21 +1,17 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable'
-import {CONTAINERS} from './containers.mock';
+import {GeneratorService} from './generator.service';
 import {Container} from './container';
 import {SimulatorService} from './simulator.service';
 
 /**
- * Service for fetching and mutating containers.
+ * Service for fetching containers.
  */
 export interface IContainerService {
-
     /**
-     * Returns an Observable for the container with the given id.
-     *
-     * @param id
-     *    The id of the container to return.
+     * Returns an Observable for all of the containers in the system.
      */
-    getContainer(id: number): Observable<Container>;
+    getContainers(): Observable<Container[]>;
 
     /**
      * Starts the given container and returns an observable of the mutated container.
@@ -37,15 +33,9 @@ export interface IContainerService {
 @Injectable()
 export class ContainerService implements IContainerService {
 
-    getContainer(id: number): Observable<Container> {
-        let target = CONTAINERS.find((container: Container) => container.id === id);
-
+    getContainers(): Observable<Container[]> {
         return Observable.create(observer => {
-            if (target) {
-                observer.next(target);
-            } else {
-                observer.error(`No such container with id ${id}.`);
-            }
+            observer.next(this._containers);
             observer.complete();
         });
     }
@@ -68,8 +58,11 @@ export class ContainerService implements IContainerService {
         });
     }
 
-    constructor(simulator: SimulatorService) {
-        simulator.simulateContainerRuntime(CONTAINERS);
+    constructor(generator: GeneratorService, simulator: SimulatorService) {
+        this._containers = generator.generateContainers(50);
+        simulator.simulateContainerRuntime(this._containers);
     }
+
+    private _containers: Container[]
 
 }
