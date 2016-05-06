@@ -1,0 +1,37 @@
+.bold {
+  font-weight: bolder;
+}
+
+.btn.started {
+  background-color: #d9534f;
+  border-color: #d43f3a;
+  color: #fff;
+}
+
+.btn.stopped {
+  color: #fff;
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+}
+
+.card {
+  background: white;
+  border-radius: 3px;
+  border-left: 5px solid green;
+  box-shadow: 0 1px 2px #aaa;
+  margin: 25px 0;
+  padding: 15px;
+}
+
+.card.stopped {
+  border-left-color: red;
+}
+
+.layout {
+  line-height: 1.2;
+  vertical-align: middle;
+}
+
+.statistics-value, .utilization-value {
+  font-size: 12px;
+}

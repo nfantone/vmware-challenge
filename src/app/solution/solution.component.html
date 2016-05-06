@@ -1,57 +1,41 @@
-<div class="main-container container-fluid">
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-
-            <div class="card vm-container">
-                <div class="header">
-                    <h4 class="title">Statistics</h4>
-                    <div class="pull-left">
-                        <p class="category vm-container__id">
-                            <span><strong>ID: </strong>{{ container.id }} </span>
-                        </p>
-                        <p class="category vm-container__name"><strong>Name: </strong>{{ container.name }}</p>
-                        <p class="category vm-container__memory">
-                            <strong>Memory: </strong>
-                            <span>{{ container.memory | vmwMemoryFormat }}</span>
-                        </p>
-                    </div>
-                    <div class="pull-right">
-                        <!-- TODO: Improve this logic to have less lines :) -->
-                        <span *ngIf="container.state === 'STARTED'"
-                              class="alert alert-success vm-container__state--current">
-                            {{ container.state }}
-                        </span>
-                         <span *ngIf="container.state === 'STOPPED'"
-                               class="alert alert-danger vm-container__state--current">
-                            {{ container.state }}
-                        </span>
-                        <button *ngIf="container.state === 'STARTED'" class="btn btn-danger vm-container__state"
-                                (click)="stopContainer($event)">
-                            Stop
-                        </button>
-                        <button *ngIf="container.state === 'STOPPED'" class="btn btn-success vm-container__state"
-                                (click)="startContainer($event)">
-                            Start
-                        </button>
-                    </div>
-                </div>
-                <div class="clearfix"></div>
-                <hr>
-                <div class="content">
-                    <div class="footer">
-                        <div class="legend">
-                            <div class="vm-container__utilization">
-                                <h4>Utilization: </h4>
-                                <p><strong>CPU: </strong>{{ container.utilization.cpu }} %</p>
-                                <p><strong>Memory: </strong>{{ container.utilization.memory | vmwMemoryFormat }}</p>
-                                <p><strong>Disk:</strong> {{ container.utilization.disk | vmwMemoryFormat }}</p>
-                            </div>
-                        </div>
-
-                    </div>
-                </div><!-- ./content -->
-            </div><!-- ./card -->
-
-        </div>
-    </div>
+<div class="layout container-fluid">
+  <div class="row">
+    <section class="card {{ container.state | lowercase}} col-xs-12 col-md-4">
+      <div class="statistics-column col-xs-6">
+        <h4 class="title">Statistics</h4>
+        <p class="statistics-value">
+          <span>ID:</span>
+          <span class="bold">{{ container.id }}</span>
+        </p>
+        <p class="statistics-value">
+          <span>Name:</span>
+          <span class="bold">{{ container.name }}</span>
+        </p>
+        <p class="statistics-value">
+          <span>Memory:</span>
+          <span class="bold">{{ container.memory }}</span>
+        </p>
+      </div>
+      <div class="utilization-column col-xs-6">
+        <h4 class="title">Utilization</h4>
+        <p class="utilization-value">
+          <span>CPU:</span>
+          <span class="bold">{{ container.utilization.cpu }} %</span>
+        </p>
+        <p class="utilization-value">
+          <span>Memory:</span>
+          <span class="bold">{{ container.utilization.memory | vmwMemoryFormat }}</span>
+        </p>
+        <p class="utilization-value">
+          <span>Disk:</span>
+          <span class="bold">{{ container.utilization.disk | vmwMemoryFormat }}</span>
+        </p>
+      </div>
+      <div class="card-footer pull-right">
+        <button class="btn {{ container.state | lowercase}}">
+          {{ container.state === 'STARTED' ? 'Stop' : 'Start'}}
+        </button>
+      </div>
+    </section><!-- ./card -->
+  </div>
 </div>

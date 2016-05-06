@@ -9,6 +9,7 @@ const DEFAULT_CONTAINER_ID = 1;
 @Component({
   selector: 'my-solution',
   templateUrl: 'app/solution/solution.component.html',
+  styleUrls: ['app/solution/solution.css'],
   providers: [
     ContainerService
   ],
