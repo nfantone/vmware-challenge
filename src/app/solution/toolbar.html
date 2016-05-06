@@ -1,0 +1,21 @@
+<div class="toolbar col-xs-12">
+  <h2 class="title">Containers</h2>
+  <ul>
+    <li>
+      <div class="checkbox sort {{ order ? 'desc' : 'asc' }}">
+        <label>
+          <input type="checkbox" (change)="onSortChange()" [(ngModel)]="order">
+          Sort
+        </label>
+      </div>
+    </li>
+    <li>
+      <div class="checkbox critical" title="Using more than 80% of their allocated memory">
+        <label>
+          <input type="checkbox" (change)="onFilterChange()">
+          High memory usage
+        </label>
+      </div>
+    </li>
+  </ul>
+</div>

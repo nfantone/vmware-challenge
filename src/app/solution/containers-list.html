@@ -19,7 +19,7 @@
       </div>
     </div>
     <div class="card-footer pull-right">
-      <button class="btn {{ container.state | lowercase}} transition" (click)="notifyStateChange(container)">
+      <button class="btn {{ container.state | lowercase}}" (click)="notifyStateChange(container)">
         {{ container.state === 'STARTED' ? 'Stop' : 'Start'}}
       </button>
     </div>

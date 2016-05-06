@@ -5,10 +5,10 @@ import {SortByIdPipe} from './sort-by-id.pipe';
 import {MemoryAllocationPipe} from './memory-allocation.pipe';
 
 @Component({
-    selector: 'vmw-containers-list',
-    templateUrl: 'app/solution/containers-list.html',
-    pipes: [MemoryFormatPipe, SortByIdPipe, MemoryAllocationPipe],
-    styleUrls: ['app/solution/containers-list.css']
+  selector: 'vmw-containers-list',
+  templateUrl: 'app/solution/containers-list.html',
+  pipes: [MemoryFormatPipe, SortByIdPipe, MemoryAllocationPipe],
+  styleUrls: ['app/solution/containers-list.css']
 })
 export class ContainersListComponent {
 
@@ -22,7 +22,7 @@ export class ContainersListComponent {
   private idOrder: boolean;
 
   @Output()
-  stateChange: EventEmitter = new EventEmitter();
+  stateChange: EventEmitter<Object> = new EventEmitter();
 
   notifyStateChange(c: Container) {
     this.stateChange.emit({ container: c });

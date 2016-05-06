@@ -3,16 +3,17 @@ import {ContainerService} from '../containers/container.service';
 import {Container} from '../containers/container';
 import {Observable} from 'rxJS/Observable';
 import {ContainersListComponent} from './containers-list.component';
+import {ToolbarComponent} from './toolbar.component';
 
 @Component({
   selector: 'my-solution',
   templateUrl: 'app/solution/solution.html',
   providers: [ ContainerService ],
-  directives: [ ContainersListComponent ]
+  directives: [ ContainersListComponent, ToolbarComponent ]
 })
 export class SolutionComponent implements OnInit {
   private static CRITITAL_MEMORY_THRESHOLD : number = 0.8;
-
+  order: Boolean;
   containers: Observable<Container[]>;
   memoryThreshold: number = 0;
 
@@ -37,5 +38,9 @@ export class SolutionComponent implements OnInit {
 
   startContainer(c: Container) : Observable<Container> {
     return this.containerService.startContainer(c);
+  }
+
+  toggleOrder(evt: Event) {
+    this.order = evt.order;
   }
 }
