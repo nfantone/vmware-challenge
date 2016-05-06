@@ -15,7 +15,7 @@
 }
 
 .box {
-  font-size: 18px;
+  font-size: 16px;
   margin: 10px;
 }
 
@@ -77,8 +77,8 @@
   box-shadow: 0 1px 2px #aaa;
   color: black;
   display: block;
-  margin: 25px 0;
-  max-width: 380px;
+  margin: 25px 10px;
+  max-width: 500px;
   padding: 15px;
 }
 
@@ -115,7 +115,7 @@
 }
 
 .col-xs-3, .col-xs-6, .col-xs-12,
-.col-md-4, .col-md-6 {
+.col-md-3, .col-md-6 {
   float: left;
 }
 
@@ -130,6 +130,7 @@
   clear: both;
 }
 
+.container::after, .row::after,
 .container::before, .row::before {
   display: table;
   content: " ";
@@ -204,8 +205,8 @@
     width:970px;
   }
 
-  .col-md-4 {
-    width: 33.33333333%;
+  .col-md-3 {
+    width: 31.5%;
   }
 }
 
