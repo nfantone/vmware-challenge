@@ -14,6 +14,11 @@
   font-weight: bolder;
 }
 
+.box {
+  font-size: 18px;
+  margin: 10px;
+}
+
 .btn {
   -moz-user-select: none;
   -ms-touch-action: manipulation;
@@ -73,11 +78,25 @@
   color: black;
   display: block;
   margin: 25px 0;
+  max-width: 380px;
   padding: 15px;
 }
 
 .card.stopped {
   border-left-color: #d43669;
+}
+
+.card-header {
+  margin: 5px 0 20px;
+}
+
+.card-header .title {
+  color: #888;
+  margin-top: -5px;
+}
+
+.col-xs-3 {
+  width: 30%;
 }
 
 .col-xs-6 {
@@ -88,14 +107,15 @@
   width: 100%;
 }
 
-.col-xs-6, .col-xs-12 {
+.col-xs-3, .col-xs-6, .col-xs-12 {
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
   position: relative;
 }
 
-.col-xs-12, .col-xs-6, .col-md-6, .col-md-4 {
+.col-xs-3, .col-xs-6, .col-xs-12,
+.col-md-4, .col-md-6 {
   float: left;
 }
 
@@ -125,6 +145,10 @@
   vertical-align: middle;
 }
 
+.pull-left {
+  float: left;
+}
+
 .pull-right {
   float: right;
 }
@@ -134,8 +158,8 @@
   margin-left: -15px;
 }
 
-.statistics-value, .utilization-value {
-  font-size: 12px;
+.title {
+  margin: 0;
 }
 
 .transition {
@@ -145,6 +169,29 @@
   -o-transition: all 1s ease;
   transition: all 1s ease;
 }
+
+.utilization-column {
+  margin: 15px 0;
+  padding: 0;
+}
+
+.utilization-column > div {
+  -webkit-border-radius: 5px;
+  -webkit-box-shadow: 0 1px 2px #aaa;
+  background-color: #eee;
+  border-radius: 5px;
+  box-shadow: 0 1px 2px #aaa;
+  margin: 10px 5px;
+  min-width: 100px;
+  padding: 5px 0;
+  text-align: center;
+}
+
+.utilization-column .title {
+  margin: 20px 0;
+  padding-left: 15px;
+}
+
 
 @media (min-width: 768px) {
   .container {
