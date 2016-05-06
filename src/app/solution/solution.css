@@ -10,6 +10,10 @@
   transform: scale(1.1);
 }
 
+.btn {
+  outline: none;
+}
+
 .btn.started {
   background-color: #d43669;
   border-color: #d43f3a;
