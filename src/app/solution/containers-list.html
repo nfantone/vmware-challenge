@@ -1,41 +1,27 @@
-<div class="layout container">
-  <div class="row">
-    <section class="card {{ container.state | lowercase}} col-xs-12 col-md-4 transition" *ngFor="let container of containers | memoryAllocation:memoryFilterThreshold | sortById:idOrder">
-      <div class="statistics-column col-xs-6">
-        <h4 class="title">Statistics</h4>
-        <p class="statistics-value">
-          <span>ID:</span>
-          <span class="bold">{{ container.id }}</span>
-        </p>
-        <p class="statistics-value">
-          <span>Name:</span>
-          <span class="bold">{{ container.name }}</span>
-        </p>
-        <p class="statistics-value">
-          <span>Memory:</span>
-          <span class="bold">{{ container.memory }}</span>
-        </p>
+<div class="row">
+  <section class="card {{ container.state | lowercase }} col-xs-12 col-md-3 transition" *ngFor="let container of containers | memoryAllocation:memoryFilterThreshold | sortById:idOrder">
+    <div class="card-header col-xs-12">
+      <h2 class="title pull-left">#{{ container.id }} {{ container.name }}</h2>
+      <span class="bold pull-right">{{ container.memory | vmwMemoryFormat }}</span>
+    </div>
+    <div class="utilization-column col-xs-12">
+      <div class="col-xs-3">
+        <span>CPU</span>
+        <p class="bold box">{{ container.utilization.cpu }}%</p>
       </div>
-      <div class="utilization-column col-xs-6">
-        <h4 class="title">Utilization</h4>
-        <p class="utilization-value">
-          <span>CPU:</span>
-          <span class="bold">{{ container.utilization.cpu }} %</span>
-        </p>
-        <p class="utilization-value">
-          <span>Memory:</span>
-          <span class="bold">{{ container.utilization.memory | vmwMemoryFormat }}</span>
-        </p>
-        <p class="utilization-value">
-          <span>Disk:</span>
-          <span class="bold">{{ container.utilization.disk | vmwMemoryFormat }}</span>
-        </p>
+      <div class="col-xs-3">
+        <span>RAM</span>
+        <p class="bold box">{{ container.utilization.memory | vmwMemoryFormat }}</p>
       </div>
-      <div class="card-footer pull-right">
-        <button class="btn {{ container.state | lowercase}} transition" (click)="notifyStateChange(container)">
-          {{ container.state === 'STARTED' ? 'Stop' : 'Start'}}
-        </button>
+      <div class="col-xs-3">
+        <span>Disk</span>
+        <p class="bold box">{{ container.utilization.disk | vmwMemoryFormat }}</p>
       </div>
-    </section><!-- ./card -->
-  </div>
+    </div>
+    <div class="card-footer pull-right">
+      <button class="btn {{ container.state | lowercase}} transition" (click)="notifyStateChange(container)">
+        {{ container.state === 'STARTED' ? 'Stop' : 'Start'}}
+      </button>
+    </div>
+  </section>
 </div>
