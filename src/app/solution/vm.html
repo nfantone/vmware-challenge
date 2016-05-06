@@ -1,0 +1,9 @@
+<div class="row">
+  <div class="card" [ngStyle]="{'background-image':'url('+vm.screenshot+')'}">
+    <div class="card-header col-xs-12">
+      <h2 class="title">({{vm.id}}) {{vm.name}}</h2>
+      <div class="ip">{{vm.ip}}</div>
+    </div>
+  </div>
+  <ng-content></ng-content>
+</div>

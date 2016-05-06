@@ -1,0 +1,13 @@
+<div class="toolbar col-xs-12">
+  <h2 class="title">{{title}}</h2>
+  <ul>
+    <li>
+      <div class="checkbox sort {{ order ? 'desc' : 'asc' }}">
+        <label>
+          <input type="checkbox" (change)="onSortChange()" [(ngModel)]="order">
+          Sort
+        </label>
+      </div>
+    </li>
+  </ul>
+</div>

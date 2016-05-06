@@ -16,13 +16,13 @@ export class ContainersListComponent {
   private containers: Container[];
 
   @Input()
-  private memoryFilterThreshold: number = 0;
+  private memoryFilterThreshold: number = 1;
 
   @Input()
   private idOrder: boolean;
 
   @Output()
-  stateChange: EventEmitter = new EventEmitter();
+  stateChange: EventEmitter<{ container: Container }> = new EventEmitter();
 
   notifyStateChange(c: Container) {
     this.stateChange.emit({ container: c });

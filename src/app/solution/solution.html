@@ -1,29 +1,14 @@
 <div class="layout container">
-  <div class="toolbar col-xs-12">
-    <h2 class="title">Containers</h2>
-    <ul>
-      <li>
-        <div class="checkbox sort {{ order ? 'asc' : 'desc' }}">
-          <label>
-            <input type="checkbox" [(ngModel)]="order">
-            Sort
-          </label>
-        </div>
-      </li>
-      <li>
-        <div class="checkbox critical" title="Using more than 80% of their allocated memory">
-          <label>
-            <input type="checkbox" (change)="toggleCriticalFilter($event)">
-            High memory usage
-          </label>
-        </div>
-      </li>
-    </ul>
-  </div>
-  <vmw-containers-list
-    [containers]="containers | async"
-    [idOrder]="order"
-    [memoryFilterThreshold]="memoryThreshold"
-    (stateChange)="toggleContainerState($event)">
-  </vmw-containers-list>
+ <vmw-toolbar
+    title="Virtual Machines"
+    (sortChange)="toggleOrder($event)">
+  </vmw-toolbar>
+  <vmw-vm (vmLoaded)="onVmLoaded($event)">
+    <vmw-containers-list
+      [containers]="containers | async | vm:vmInstance"
+      [idOrder]="order"
+      [memoryFilterThreshold]="memoryThreshold"
+      (stateChange)="toggleContainerState($event)">
+    </vmw-containers-list>
+  </vmw-vm>
 </div>
