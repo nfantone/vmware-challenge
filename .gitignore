@@ -106,5 +106,5 @@ crashlytics.properties
 crashlytics-build.properties
 
 # Compiled sources
-app/**/*.js
-app/**/*.map
+src/app/**/*.js
+src/app/**/*.map
