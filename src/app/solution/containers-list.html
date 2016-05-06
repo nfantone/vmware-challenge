@@ -1,5 +1,5 @@
 <div class="row">
-  <section class="card {{ container.state | lowercase }} col-xs-12 col-md-3 transition {{highMemory(container) ? 'warning': ''}}" *ngFor="let container of containers | memoryAllocation:memoryFilterThreshold | sortById:idOrder">
+  <section class="card {{ container.state | lowercase }} col-xs-12 col-md-3 transition {{highMemory(container) ? 'warning': ''}}" *ngFor="let container of containers | sortById:idOrder">
     <div class="card-header col-xs-12">
       <h2 class="title pull-left">#{{ container.id }} {{ container.name }}</h2>
       <span class="bold pull-right">{{ container.memory | vmwMemoryFormat }}</span>
@@ -17,11 +17,6 @@
         <span>Disk</span>
         <p class="bold box">{{ container.utilization.disk | vmwMemoryFormat }}</p>
       </div>
-    </div>
-    <div class="card-footer pull-right">
-      <button class="btn {{ container.state | lowercase}} transition" (click)="notifyStateChange(container)">
-        {{ container.state === 'STARTED' ? 'Stop' : 'Start'}}
-      </button>
     </div>
   </section>
 </div>

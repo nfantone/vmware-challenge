@@ -3,11 +3,11 @@
     title="Virtual Machines"
     (sortChange)="toggleOrder($event)">
   </vmw-toolbar>
-  <vmw-vm (vmLoaded)="onVmLoaded($event)">
+  <vmw-vm (vmLoaded)="onVmLoaded($event)" [alerts]="warningCount">
     <vmw-containers-list
       [containers]="containers | async | vm:vmInstance"
       [idOrder]="order"
-      [memoryFilterThreshold]="memoryThreshold"
+      (warning)="onWarning($event)"
       (stateChange)="toggleContainerState($event)">
     </vmw-containers-list>
   </vmw-vm>

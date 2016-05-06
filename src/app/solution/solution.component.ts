@@ -16,11 +16,9 @@ import {ToolbarComponent} from './toolbar.component';
   pipes: [ VmContainersPipe ]
 })
 export class SolutionComponent {
-  private static CRITITAL_MEMORY_THRESHOLD : number = 0.8;
-
   order: boolean;
   containers: Observable<Container[]>;
-  memoryThreshold: number = SolutionComponent.CRITITAL_MEMORY_THRESHOLD;
+  warningCount: number = 0;
   vmInstance: Vm;
 
   constructor(private containerService: ContainerService) { }
@@ -30,18 +28,12 @@ export class SolutionComponent {
     this.containers = this.containerService.getContainers();
   }
 
-  toggleContainerState(evt : {container: Container}) : Observable<Container> {
-    let c = evt.container;
-    return c.state === 'STARTED' ? this.stopContainer(c) : this.startContainer(c);
+  onWarning(evt : {containers: Container[]}) {
+    if (evt.containers) {
+      this.warningCount = evt.containers.length;
+    }
   }
 
-  stopContainer(c: Container) : Observable<Container> {
-    return this.containerService.stopContainer(c);
-  }
-
-  startContainer(c: Container) : Observable<Container> {
-    return this.containerService.startContainer(c);
-  }
 
   toggleOrder(evt: {order: boolean}) {
     this.order = evt.order;

@@ -1,4 +1,4 @@
-import {Component, OnInit, Output, EventEmitter} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {Container} from '../containers/container';
 import {Vm} from '../vms/vm';
 import {VmService} from '../vms/vm.service';
@@ -11,6 +11,9 @@ import {VmService} from '../vms/vm.service';
 })
 export class VmComponent implements OnInit {
   private static DEFAULT_VM_ID : number = 1;
+
+  @Input()
+  alerts: number = 0;
 
   @Output()
   vmLoaded = new EventEmitter<{ vm: Vm }>();

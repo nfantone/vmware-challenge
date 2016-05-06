@@ -50,3 +50,16 @@
 .pull-right {
   float: right;
 }
+
+.status:before {
+    content: ' \25CF';
+    font-size: 20px;
+}
+
+.status.warning {
+  color: #f0ad4e;
+}
+
+.status.success {
+  color: #8bc34a;
+}
