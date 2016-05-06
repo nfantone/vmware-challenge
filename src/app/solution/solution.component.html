@@ -1,6 +1,6 @@
 <div class="layout container-fluid">
   <div class="row">
-    <section class="card {{ container.state | lowercase}} col-xs-12 col-md-4">
+    <section class="card {{ container.state | lowercase}} col-xs-12 col-md-4 transition">
       <div class="statistics-column col-xs-6">
         <h4 class="title">Statistics</h4>
         <p class="statistics-value">
@@ -32,7 +32,7 @@
         </p>
       </div>
       <div class="card-footer pull-right">
-        <button class="btn {{ container.state | lowercase}}">
+        <button class="btn {{ container.state | lowercase}} transition" (click)="toggleContainerState($event)">
           {{ container.state === 'STARTED' ? 'Stop' : 'Start'}}
         </button>
       </div>

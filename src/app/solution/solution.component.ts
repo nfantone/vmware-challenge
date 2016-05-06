@@ -23,12 +23,17 @@ export class SolutionComponent implements OnInit {
     this.containerService.getContainer(DEFAULT_CONTAINER_ID)
       .subscribe((c: Container) => this.container = c);
   }
+  toggleContainerState(evt : Event) {
+    evt.preventDefault();
+    evt.stopPropagation();
+    return this.container.state === 'STARTED' ? this.stopContainer() : this.startContainer();
+  }
 
-  stopContainer(evt : Event) : Observable<Container> {
+  stopContainer() : Observable<Container> {
     return this.containerService.stopContainer(this.container);
   }
 
-  startContainer(evt: Event) : Observable<Container> {
+  startContainer() : Observable<Container> {
     return this.containerService.startContainer(this.container);
   }
 }
