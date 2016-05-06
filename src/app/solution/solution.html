@@ -1,0 +1,10 @@
+<div>
+  SORT: <input type="checkbox" [(ngModel)]="order">
+  SHOW CRITITAL: <input type="checkbox" (change)="toggleCriticalFilter($event)">
+  <vmw-containers-list
+    [containers]="containers | async"
+    [idOrder]="order"
+    [memoryFilterThreshold]="memoryThreshold"
+    (stateChange)="toggleContainerState($event)">
+  </vmw-containers-list>
+</div>

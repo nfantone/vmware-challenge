@@ -1,8 +1,6 @@
 <div class="layout container">
-  SORT: <input type="checkbox" [(ngModel)]="order">
-  SHOW CRITITAL: <input type="checkbox" (change)="toggleCriticalFilter($event)">
   <div class="row">
-    <section class="card {{ container.state | lowercase}} col-xs-12 col-md-4 transition" *ngFor="let container of containers | async | memoryAllocation:memoryThreshold | sortById:order">
+    <section class="card {{ container.state | lowercase}} col-xs-12 col-md-4 transition" *ngFor="let container of containers | memoryAllocation:memoryFilterThreshold | sortById:idOrder">
       <div class="statistics-column col-xs-6">
         <h4 class="title">Statistics</h4>
         <p class="statistics-value">
@@ -34,7 +32,7 @@
         </p>
       </div>
       <div class="card-footer pull-right">
-        <button class="btn {{ container.state | lowercase}} transition" (click)="toggleContainerState($event, container)">
+        <button class="btn {{ container.state | lowercase}} transition" (click)="notifyStateChange(container)">
           {{ container.state === 'STARTED' ? 'Stop' : 'Start'}}
         </button>
       </div>
